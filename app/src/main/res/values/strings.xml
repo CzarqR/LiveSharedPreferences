@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LiveSHLib</string>
+    <string name="random_values">Random Values</string>
 </resources>

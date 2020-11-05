@@ -3,6 +3,9 @@ package com.myniprojects.livesh
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 
+private const val ERROR_MSG =
+    "Unsupported SharedPreferences type. Currently supported types: [Boolean, Int, Long, Float, String, Set<String>]"
+
 class LiveSharedPreferences<T>(
     val key: String,
     val defValue: T,
@@ -48,13 +51,14 @@ class LiveSharedPreferences<T>(
             {
                 return sharedPrefs.getFloat(key, defValue) as T
             }
-            //is Set<String>?->
-            //{
-            //    return sharedPrefs.getStringSet(key, defValue) as T
-            //}
+            is Set<*> ->
+            {
+                // Any Set will be converted to string set
+                return sharedPrefs.getStringSet(key, defValue as Set<String>) as T
+            }
             else ->
             {
-                throw IllegalArgumentException("Unsupported SharedPreferences type. Currently supported types: [Boolean, Int, Long, Float, String]")
+                throw IllegalArgumentException(ERROR_MSG)
             }
         }
     }
