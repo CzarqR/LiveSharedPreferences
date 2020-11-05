@@ -1,0 +1,3 @@
+include ':LiveSH'
+include ':app'
+rootProject.name = "LiveSHLib"
