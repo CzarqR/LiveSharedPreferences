@@ -176,7 +176,7 @@ fun SharedPreferences.Editor.putFloat(
 
 
 fun SharedPreferences.Editor.putString(
-    pair: Pair<String, String>
+    pair: Pair<String, String?>
 ): SharedPreferences.Editor
 {
     return putString(pair.first, pair.second)
